@@ -1,6 +1,11 @@
 # Environment and secrets
 .env
 .env.*
+*.json
+
+# GCP Credentials - NEVER COMMIT
+gen-lang-client-*.json
+app/gen-lang-client-*.json
 
 # Python
 __pycache__/
