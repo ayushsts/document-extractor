@@ -1,0 +1,25 @@
+services:
+  fastapi_app:
+    build: .
+    container_name: fastapi_container
+    volumes:
+      - ./outputs:/app/outputs
+    environment:
+      - GOOGLE_APPLICATION_CREDENTIALS=/app/gen-lang-client-0230748166-1ccd3a1fddcb.json # If using GCP auth files
+      - CYCLOPS_API_KEY=TYr-8h63BMHgA9pCzvXlT_8mUNTlUm5Uk995ZKazHus
+    restart: always
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_proxy
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./outputs:/app/outputs:ro 
+    depends_on:
+      - fastapi_app
+    restart: always
+
+volumes:
+  outputs:

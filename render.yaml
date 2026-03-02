@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: document-extractor
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.fast_main:app --host 0.0.0.0 --port 8080
+    envVars:
+      - key: CYCLOPS_API_KEY
+        sync: false
+      - key: GEM_API_KEY
+        sync: false
+      - key: GEM_PROJECT_ID
+        sync: false
+      - key: GEM_LOCATION
+        sync: false
+      - key: MODEL_NAME
+        sync: false
+      - key: PYTHON_VERSION
+        value: 3.11.0
