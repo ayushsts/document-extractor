@@ -1,14 +1,20 @@
 import os
 import uuid
 import time
-import json 
+import json
 import base64
 import csv
 #import fitz
 import re
-import config 
-import configure
 import pandas as pd
+
+# Handle imports for both local and Render deployment
+try:
+    from app import config
+    from app import configure
+except ImportError:
+    import config
+    import configure
 #from PIL import Image
 from pathlib import Path
 from fastapi import FastAPI, UploadFile, File, HTTPException, BackgroundTasks, Request
